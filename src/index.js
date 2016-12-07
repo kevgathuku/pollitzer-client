@@ -14,7 +14,9 @@ import {setState} from './action_creators';
 
 import './index.css';
 
-const logger = createLogger();
+const logger = createLogger({
+  stateTransformer: (state) => state.toJS()
+});
 const store = createStore(
   reducer,
   applyMiddleware(logger)
