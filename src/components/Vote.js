@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class Voting extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pair: this.props.pair || [],
-      disabled: !!this.props.hasVoted,
-    };
+export default class Voting extends PureComponent {
+  getPair() {
+    return this.props.pair || [];
+  }
+
+  isDisabled() {
+    return !!this.props.hasVoted;
   }
 
   hasVotedFor(entry) {
@@ -16,10 +16,10 @@ export default class Voting extends Component {
   render() {
     return (
       <div className="voting">
-      {this.state.pair.map(entry =>
+      {this.getPair().map(entry =>
         <button
           key={entry}
-          disabled={this.state.disabled}
+          disabled={this.isDisabled()}
           onClick={() => this.props.vote(entry)}
         >
           <h1 className="title">{entry}</h1>
