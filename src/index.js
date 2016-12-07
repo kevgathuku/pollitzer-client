@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Router, browserHistory} from 'react-router';
 import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 import App from './components/App';
 import Results from './components/Results';
-import Voting from './components/Voting';
+import {VotingContainer} from './components/Voting';
 import reducer from './reducer';
 
 import './index.css';
@@ -16,18 +17,20 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
     vote: {
-      pair: ['Sunshine', '28 Days Later'],
+      pair: ['Sunshine', '127 Hours'],
       tally: {Sunshine: 2}
     }
   }
 });
 
 ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route component={App}>
-      <Route path="/" component={Voting} />
-      <Route path="/results" component={Results} />
-    </Route>
-  </Router>,
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route component={App}>
+        <Route path="/" component={VotingContainer} />
+        <Route path="/results" component={Results} />
+      </Route>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );

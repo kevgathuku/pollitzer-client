@@ -8,7 +8,7 @@ import {
 import { expect } from 'chai';
 import {List} from 'immutable';
 
-import Voting from './Voting';
+import {Voting} from './Voting';
 
 describe('Voting', () => {
   it('renders without crashing', () => {
