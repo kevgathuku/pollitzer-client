@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-export default class Voting extends PureComponent {
+export default class Vote extends PureComponent {
   getPair() {
     return this.props.pair || [];
   }
