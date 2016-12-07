@@ -21,15 +21,9 @@ const store = createStore(
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 
-store.dispatch({
-  type: 'SET_STATE',
-  state: {
-    vote: {
-      pair: ['Sunshine', '127 Hours'],
-      tally: {Sunshine: 2}
-    }
-  }
-});
+socket.on('state', state =>
+  store.dispatch({type: 'SET_STATE', state})
+);
 
 ReactDOM.render(
   <Provider store={store}>
