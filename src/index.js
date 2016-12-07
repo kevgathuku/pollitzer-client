@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Route, Router, browserHistory} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import io from 'socket.io-client';
 
 import App from './components/App';
 import {ResultsContainer} from './components/Results';
@@ -12,6 +13,8 @@ import reducer from './reducer';
 import './index.css';
 
 const store = createStore(reducer);
+
+const socket = io(`${location.protocol}//${location.hostname}:8090`);
 
 store.dispatch({
   type: 'SET_STATE',
