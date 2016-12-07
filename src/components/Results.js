@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
+import {connect} from 'react-redux';
 
 import Winner from './Winner';
 
-class Results extends PureComponent {
+export class Results extends PureComponent {
   getPair() {
     return this.props.pair || [];
   }
@@ -39,4 +40,13 @@ class Results extends PureComponent {
  }
 }
 
-export default Results;
+function mapStateToProps(state) {
+  return {
+    pair: state.getIn(['vote', 'pair']),
+    tally: state.getIn(['vote', 'tally']),
+    winner: state.get('winner')
+  }
+}
+
+// Produces a pure component that takes its props from the store (data source)
+export const ResultsContainer = connect(mapStateToProps)(Results);

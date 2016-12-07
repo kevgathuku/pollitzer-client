@@ -5,7 +5,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 import App from './components/App';
-import Results from './components/Results';
+import {ResultsContainer} from './components/Results';
 import {VotingContainer} from './components/Voting';
 import reducer from './reducer';
 
@@ -28,7 +28,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={VotingContainer} />
-        <Route path="/results" component={Results} />
+        <Route path="/results" component={ResultsContainer} />
       </Route>
     </Router>
   </Provider>,
