@@ -22,7 +22,7 @@ export default class Voting extends Component {
           disabled={this.state.disabled}
           onClick={() => this.props.vote(entry)}
         >
-          <h1>{entry}</h1>
+          <h1 className="title">{entry}</h1>
           {this.hasVotedFor(entry) ?
             <div className="label">Voted</div> :
             null}
