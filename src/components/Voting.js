@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Vote from './Vote';
 import Winner from './Winner';
+import * as actionCreators from '../action_creators';
 
 export class Voting extends PureComponent {
   render() {
@@ -16,7 +17,7 @@ export class Voting extends PureComponent {
   }
 }
 
-// Called when the Redux store is updated
+// Called each time the Redux store is updated
 // Maps some entries in the state to props received by the component
 function mapStateToProps(state) {
   return {
@@ -27,4 +28,10 @@ function mapStateToProps(state) {
 }
 
 // Returns a new 'smart' component connected to the Redux store
-export const VotingContainer = connect(mapStateToProps)(Voting);
+// Adding actionCreators sends an object with a vote function
+// This will be added to the props supplied to 'Voting'
+// Calling the vote function dispatches an action to the store
+export const VotingContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Voting);
