@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Router, browserHistory} from 'react-router';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
+import createLogger from 'redux-logger';
 import {Provider} from 'react-redux';
 import io from 'socket.io-client';
 
@@ -12,7 +13,11 @@ import reducer from './reducer';
 
 import './index.css';
 
-const store = createStore(reducer);
+const logger = createLogger();
+const store = createStore(
+  reducer,
+  applyMiddleware(logger)
+);
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 
