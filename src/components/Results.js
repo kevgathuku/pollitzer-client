@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {connect} from 'react-redux';
 
+import * as actionCreators from '../action_creators';
 import Winner from './Winner';
 
 export class Results extends PureComponent {
@@ -49,4 +50,7 @@ function mapStateToProps(state) {
 }
 
 // Produces a pure component that takes its props from the store (data source)
-export const ResultsContainer = connect(mapStateToProps)(Results);
+export const ResultsContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Results);
